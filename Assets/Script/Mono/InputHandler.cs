@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InputHandler : OMonoBehaviour
+public class InputHandler : MonoBehaviour
 {
     Vector2 _oldPos;
 
     UnityEvent<Vector2> e_move;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         e_move = new UnityEvent<Vector2>();
-    }
-
-    private void Start()
-    {
         Observer.RegisterEventFromTransform<IMove, Vector2>(transform, "Move", e_move);
     }
 

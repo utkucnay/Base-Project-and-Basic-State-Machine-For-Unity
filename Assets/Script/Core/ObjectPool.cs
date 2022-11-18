@@ -18,7 +18,7 @@ public struct ObjectArray
 
 public class ObjectPool : Singleton<ObjectPool>
 {
-    [SerializeField] public ObjectArray[] _objects;
+    [SerializeField] ObjectArray[] _objects;
 
     Dictionary<ObjectType, Stack<GameObject>> _objectPool;
     Dictionary<ObjectType, GameObject> _objectPrefab;

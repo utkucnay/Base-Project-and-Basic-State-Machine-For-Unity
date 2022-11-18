@@ -14,11 +14,11 @@ public static class Observer
         foreach (var _event in events)
         {
             var action = (UnityAction)UnityAction.CreateDelegate(typeof(UnityAction), _event, methodName);
-            var checkEvent = _event as OMonoBehaviour;
+            var checkEvent = _event as ReciverMonoBehaviour;
             if (checkEvent == null) continue;
             uEvent.AddListener(action);
-            checkEvent.e_OnEnable.AddListener(() => uEvent.AddListener(action));
-            checkEvent.e_OnDisable.AddListener(() => uEvent.RemoveListener(action));
+            checkEvent.a_OnEnable = () => uEvent.AddListener(action);
+            checkEvent.a_OnDisable = () => uEvent.RemoveListener(action);
         }
     }
 
@@ -26,12 +26,12 @@ public static class Observer
     {
         var _event = transform.GetComponent<T>();
         if (_event == null) return;
-        var checkEvent = _event as OMonoBehaviour;
+        var checkEvent = _event as ReciverMonoBehaviour;
         if (checkEvent == null) return;
         var action = (UnityAction)UnityAction.CreateDelegate(typeof(UnityAction), _event, methodName);
         uEvent.AddListener(action);
-        checkEvent.e_OnEnable.AddListener(() => uEvent.AddListener(action));
-        checkEvent.e_OnDisable.AddListener(() => uEvent.RemoveListener(action));
+        checkEvent.a_OnEnable = () => uEvent.AddListener(action);
+        checkEvent.a_OnDisable = () => uEvent.RemoveListener(action);
     }
 
     public static void RegisterEventFromRoot<T, TEventType>(Transform root, string methodName, UnityEvent<TEventType> uEvent) where T : IEventWithParam
@@ -40,11 +40,11 @@ public static class Observer
         foreach (var _event in events)
         {
             var action = (UnityAction<TEventType>)UnityAction.CreateDelegate(typeof(UnityAction<TEventType>), _event, methodName);
-            var checkEvent = _event as OMonoBehaviour;
+            var checkEvent = _event as ReciverMonoBehaviour;
             if (checkEvent == null) continue;
             uEvent.AddListener(action);
-            checkEvent.e_OnEnable.AddListener(() => uEvent.AddListener(action));
-            checkEvent.e_OnDisable.AddListener(() => uEvent.RemoveListener(action));
+            checkEvent.a_OnEnable = () => uEvent.AddListener(action);
+            checkEvent.a_OnDisable = () => uEvent.RemoveListener(action);
         }
     }
 
@@ -53,11 +53,11 @@ public static class Observer
         var _event = transform.GetComponent<T>();
         if (_event == null) return;
         var action = (UnityAction<TEventType>)UnityAction.CreateDelegate(typeof(UnityAction<TEventType>), _event, methodName);
-        var checkEvent = _event as OMonoBehaviour;
+        var checkEvent = _event as ReciverMonoBehaviour;
         if (checkEvent == null) return;
         uEvent.AddListener(action);
-        checkEvent.e_OnEnable.AddListener(() => uEvent.AddListener(action));
-        checkEvent.e_OnDisable.AddListener(() => uEvent.RemoveListener(action));
+        checkEvent.a_OnEnable = () => uEvent.AddListener(action);
+        checkEvent.a_OnDisable = () => uEvent.RemoveListener(action);
     }
 
     public static void RegisterEventFromAllGameObjects<T>(string methodName, UnityEvent uEvent) where T : IEvent
@@ -74,11 +74,11 @@ public static class Observer
         foreach (var _event in events)
         {
             var action = (UnityAction)UnityAction.CreateDelegate(typeof(UnityAction), _event, methodName);
-            var checkEvent = _event as OMonoBehaviour;
+            var checkEvent = _event as ReciverMonoBehaviour;
             if (checkEvent == null) continue;
             uEvent.AddListener(action);
-            checkEvent.e_OnEnable.AddListener(() => uEvent.AddListener(action));
-            checkEvent.e_OnDisable.AddListener(() => uEvent.RemoveListener(action));
+            checkEvent.a_OnEnable = () => uEvent.AddListener(action);
+            checkEvent.a_OnDisable = () => uEvent.RemoveListener(action);
         }
     }
     public static void RegisterEventFromAllGameObjects<T, TEventType>(string methodName, UnityEvent<TEventType> uEvent) where T : IEventWithParam
@@ -95,11 +95,11 @@ public static class Observer
         foreach (var _event in events)
         {
             var action = (UnityAction<TEventType>)UnityAction.CreateDelegate(typeof(UnityAction<TEventType>), _event, methodName);
-            var checkEvent = _event as OMonoBehaviour;
+            var checkEvent = _event as ReciverMonoBehaviour;
             if (checkEvent == null) continue;
             uEvent.AddListener(action);
-            checkEvent.e_OnEnable.AddListener(() => uEvent.AddListener(action));
-            checkEvent.e_OnDisable.AddListener(() => uEvent.RemoveListener(action));
+            checkEvent.a_OnEnable = () => uEvent.AddListener(action);
+            checkEvent.a_OnDisable = () => uEvent.RemoveListener(action);
         }
     }
 }
