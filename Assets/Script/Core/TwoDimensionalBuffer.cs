@@ -5,7 +5,7 @@ using System.Linq;
 
 public struct TwoDimensionalBuffer<T> where T: struct
 {
-    public int Count { get => _columnSize; }
+    public int Count(int column) { return _count[column]; }
 
     int []_count;
     int _size;
@@ -34,12 +34,12 @@ public struct TwoDimensionalBuffer<T> where T: struct
 
     public T Pop(int column)
     {
-        return _datas[_count[column]--];
+        return _datas[--_count[column]];
     }
 
     public T Peek(int column)
     {
-        return _datas[_count[column]];
+        return _datas[_count[column] - 1];
     }
 
     public void Clear(int column)

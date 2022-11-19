@@ -6,13 +6,13 @@ using UnityEngine;
 
 public struct CommandQueue
 {
-    Queue<BCommand> _commandQueue;
+    Queue<BaseCommand> _commandQueue;
 
-    public static CommandQueue Init() => new CommandQueue { _commandQueue= new Queue<BCommand>() }; 
+    public static CommandQueue Init() => new CommandQueue { _commandQueue= new Queue<BaseCommand>() }; 
 
     public void Execute()
     {
-        BCommand command;
+        BaseCommand command;
         _commandQueue.TryPeek(out command);
         if (command == null) 
         {
@@ -28,7 +28,7 @@ public struct CommandQueue
         _commandQueue.Clear();
     }
 
-    public void AddCommand(BCommand command)
+    public void AddCommand(BaseCommand command)
     {
         _commandQueue.Enqueue(command);
     }

@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ActionCommand : BCommand
+public class ActionCommand : BaseCommand
 {
     Action _action;
 
     public static ActionCommand Init(Action action) => new ActionCommand { _action = action };
 
-    public override void Execute()
+    internal override void Execute()
     {
         _action();
     }
 
-    public override bool CheckCondition()
+    internal override bool CheckCondition()
     {
         return true;
     }
