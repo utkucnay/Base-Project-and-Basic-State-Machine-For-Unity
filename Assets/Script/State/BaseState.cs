@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,8 +12,9 @@ public abstract class BaseState
         _transitions.Add(transition);
     }
 
+    public abstract bool IsFinish { get; }
+    public abstract bool IsLoop { get; }
     public abstract void Execute();
     public abstract BaseState CheckTransitions();
-    public abstract void OnCreate();
-    public abstract void OnDestroy();
+    public abstract BaseState Clone();
 }

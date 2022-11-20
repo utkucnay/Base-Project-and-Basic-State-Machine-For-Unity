@@ -9,16 +9,15 @@ public class CommandQueue
 {
     Queue<BaseCommand> _commandQueue;
 
-    public static CommandQueue Init() => new CommandQueue { _commandQueue= new Queue<BaseCommand>() }; 
+    public static CommandQueue Init() => new CommandQueue { _commandQueue= new Queue<BaseCommand>() };
+    public bool IsFinish { get => _commandQueue.Count <= 0; }
 
-    public bool Execute()
+    public void Execute()
     {
-        if (_commandQueue.Count <= 0) return true;
         var command = _commandQueue.Peek();
-        if (command == null) { RemoveQueue(); return false; }
+        if (command == null) { RemoveQueue(); return; }
         command.Execute();
         if (command.CheckCondition()) { command.ResetVariable(); RemoveQueue(); }
-        return false;
     }
 
     public void ClearQueue()

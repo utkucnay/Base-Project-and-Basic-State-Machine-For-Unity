@@ -12,10 +12,10 @@ public abstract class ReciverMonoBehaviour : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        a_OnEnable();
+        a_OnEnable?.Invoke();
     }
     protected virtual void OnDisable()
     {
-        a_OnDisable();
+        a_OnDisable?.Invoke();
     }
 }

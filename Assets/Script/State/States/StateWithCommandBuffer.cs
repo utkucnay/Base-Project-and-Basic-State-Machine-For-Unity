@@ -6,8 +6,12 @@ using UnityEngine;
 public class StateWithCommandBuffer : BaseState
 {
     public CommandQueue _commandQueue;
-    public CommandQueue _currCommandQueue;
+
     public bool _isLoop;
+
+    public override bool IsFinish => _commandQueue.IsFinish;
+
+    public override bool IsLoop => _isLoop;
 
     public static StateWithCommandBuffer Init(CommandQueue commandQueue, bool IsLoop)
     {
@@ -17,15 +21,7 @@ public class StateWithCommandBuffer : BaseState
 
     public override void Execute()
     {
-        if (_currCommandQueue.Execute() && _isLoop)
-        {
-            CloneCommandQueue();
-        }
-    }
-
-    void CloneCommandQueue()
-    {
-        _currCommandQueue = _commandQueue.Clone();
+        _commandQueue.Execute();
     }
 
     public override BaseState CheckTransitions()
@@ -38,13 +34,8 @@ public class StateWithCommandBuffer : BaseState
         return null;
     }
 
-    public override void OnCreate()
+    public override BaseState Clone()
     {
-        CloneCommandQueue();
-    }
-
-    public override void OnDestroy()
-    {
-        _currCommandQueue = null;
+        return new StateWithCommandBuffer { _commandQueue = this._commandQueue.Clone(), _transitions = new List<Transition>(this._transitions), _isLoop = _isLoop };
     }
 }

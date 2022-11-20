@@ -1,5 +1,5 @@
 {
-    "name": "Mono",
+    "name": "GameMechanics",
     "rootNamespace": "",
     "references": [
         "GUID:2e676ebcd6bd1574197b7abfd91ac7be"
