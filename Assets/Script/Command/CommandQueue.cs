@@ -3,24 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using System.Linq;
 
-public struct CommandQueue
+public class CommandQueue
 {
     Queue<BaseCommand> _commandQueue;
 
     public static CommandQueue Init() => new CommandQueue { _commandQueue= new Queue<BaseCommand>() }; 
 
-    public void Execute()
+    public bool Execute()
     {
-        BaseCommand command;
-        _commandQueue.TryPeek(out command);
-        if (command == null) 
-        {
-            _commandQueue.TryDequeue(out command);
-            return; 
-        }
+        if (_commandQueue.Count <= 0) return true;
+        var command = _commandQueue.Peek();
+        if (command == null) { RemoveQueue(); return false; }
         command.Execute();
-        if (command.CheckCondition()) RemoveQueue();
+        if (command.CheckCondition()) { command.ResetVariable(); RemoveQueue(); }
+        return false;
     }
 
     public void ClearQueue()
@@ -38,8 +36,18 @@ public struct CommandQueue
         _commandQueue.Enqueue(ActionCommand.Init(action));
     }
 
+    public int Count()
+    {
+        return _commandQueue.Count;
+    }
+
     void RemoveQueue()
     {
         _commandQueue.Dequeue();
+    }
+
+    public CommandQueue Clone()
+    {
+        return new CommandQueue { _commandQueue = new Queue<BaseCommand>(this._commandQueue) };
     }
 }

@@ -6,5 +6,6 @@ public abstract class BaseCommand
 {
     internal abstract void Execute();
     internal abstract bool CheckCondition();
+    internal abstract void ResetVariable();
 }
 

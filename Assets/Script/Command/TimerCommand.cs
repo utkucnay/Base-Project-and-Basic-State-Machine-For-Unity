@@ -19,4 +19,9 @@ public class TimerCommand : BaseCommand
         if(_currtime >= _time) return true;
         return false;
     }
+
+    internal override void ResetVariable()
+    {
+        _currtime = 0;
+    }
 }

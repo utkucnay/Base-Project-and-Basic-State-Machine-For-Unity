@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ActionCommand : BaseCommand
+public sealed class ActionCommand : BaseCommand
 {
     Action _action;
 
@@ -18,5 +18,9 @@ public class ActionCommand : BaseCommand
     internal override bool CheckCondition()
     {
         return true;
+    }
+
+    internal override void ResetVariable()
+    {
     }
 }

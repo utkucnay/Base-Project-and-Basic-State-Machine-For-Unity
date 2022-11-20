@@ -21,4 +21,9 @@ public class FrameTimerCommand : BaseCommand
         if (_curFrame >= _targetFrame) return true;
         return false;
     }
+
+    internal override void ResetVariable()
+    {
+        _curFrame= 0;
+    }
 }
