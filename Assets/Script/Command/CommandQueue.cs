@@ -48,6 +48,6 @@ public class CommandQueue
 
     public CommandQueue Clone()
     {
-        return new CommandQueue { _commandQueue = new Queue<BaseCommand>(this._commandQueue) };
+        return new CommandQueue { _commandQueue = Extensions.Clone<BaseCommand>(this._commandQueue) };
     }
 }
