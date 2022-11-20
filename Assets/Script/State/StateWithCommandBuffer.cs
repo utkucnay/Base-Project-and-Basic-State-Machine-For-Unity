@@ -12,7 +12,6 @@ public class StateWithCommandBuffer : BaseState
     public static StateWithCommandBuffer Init(CommandQueue commandQueue, bool IsLoop)
     {
         var state = new StateWithCommandBuffer { _commandQueue = commandQueue, _isLoop = IsLoop, _transitions = new List<Transition>() };
-        state.CloneCommandQueue();
         return state;
     }
 
@@ -39,8 +38,13 @@ public class StateWithCommandBuffer : BaseState
         return null;
     }
 
-    public override void Reset()
+    public override void OnCreate()
     {
         CloneCommandQueue();
+    }
+
+    public override void OnDestroy()
+    {
+        _currCommandQueue = null;
     }
 }

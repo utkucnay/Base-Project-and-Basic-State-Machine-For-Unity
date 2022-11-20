@@ -12,7 +12,7 @@ public abstract class BaseState
     }
 
     public abstract void Execute();
-
     public abstract BaseState CheckTransitions();
-    public abstract void Reset();
+    public abstract void OnCreate();
+    public abstract void OnDestroy();
 }

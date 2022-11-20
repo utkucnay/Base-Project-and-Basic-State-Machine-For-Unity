@@ -13,6 +13,7 @@ public class BasicStateSystem : MonoBehaviour
     private void Start()
     {
         _states = new BaseState[2];
+
         CommandQueue cq = CommandQueue.Init();
         cq.AddAction(() => Debug.Log("Timer Start"));
         cq.AddCommand(TimerCommand.Init(5));
@@ -30,12 +31,13 @@ public class BasicStateSystem : MonoBehaviour
         _states[1].AddTransitions(Transition.Init(Condition.Init(() => { if (loop) { loop = false; return true; } return false; }), _states[1]));
 
         _currState = _states[0];
+        _currState.OnCreate();
     }
 
     private void Update()
     {
         _currState.Execute();
         var state = _currState.CheckTransitions();
-        if (state != null) { _currState.Reset(); _currState = state; }
+        if (state != null) { _currState.OnDestroy(); state.OnCreate(); _currState = state; }
     }
 }
