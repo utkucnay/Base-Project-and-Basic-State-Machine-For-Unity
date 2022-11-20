@@ -43,7 +43,7 @@ public class SingletonTest
     }
 }
 
-public class TestSingleton : Singleton<TestSingleton>
+class TestSingleton : Singleton<TestSingleton>
 {
     public override void Awake()
     {
