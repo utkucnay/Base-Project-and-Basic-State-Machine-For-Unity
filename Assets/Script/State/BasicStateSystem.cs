@@ -7,6 +7,9 @@ public class BasicStateSystem : MonoBehaviour
     BaseState[] _states;
     BaseState _currState;
 
+    [SerializeField] bool trans;
+    [SerializeField] bool loop;
+
     private void Start()
     {
         _states = new BaseState[2];
@@ -22,6 +25,10 @@ public class BasicStateSystem : MonoBehaviour
         cq.AddAction(() => Debug.Log("Frame Timer End"));
         _states[1] = StateWithCommandBuffer.Init(cq, false);
 
+        _states[0].AddTransitions(Transition.Init(Condition.Init(() => trans), _states[1]));
+        _states[1].AddTransitions(Transition.Init(Condition.Init(() => !trans), _states[0]));
+        _states[1].AddTransitions(Transition.Init(Condition.Init(() => { if (loop) { loop = false; return true; } return false; }), _states[1]));
+
         _currState = _states[0];
     }
 
@@ -29,6 +36,6 @@ public class BasicStateSystem : MonoBehaviour
     {
         _currState.Execute();
         var state = _currState.CheckTransitions();
-        if (state != null) { _currState = state; }
+        if (state != null) { _currState.Reset(); _currState = state; }
     }
 }

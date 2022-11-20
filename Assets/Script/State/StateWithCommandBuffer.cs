@@ -24,11 +24,6 @@ public class StateWithCommandBuffer : BaseState
         }
     }
 
-    public void OnDisable()
-    {
-        _currCommandQueue = null;
-    }
-
     void CloneCommandQueue()
     {
         _currCommandQueue = _commandQueue.Clone();
@@ -42,5 +37,10 @@ public class StateWithCommandBuffer : BaseState
             if (transition._condition.CheckCondition()) return transition._state;
         }
         return null;
+    }
+
+    public override void Reset()
+    {
+        CloneCommandQueue();
     }
 }
