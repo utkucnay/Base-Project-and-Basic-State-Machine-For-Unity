@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 
- public struct Buffer<T>
+ public struct Buffer<T> where T : struct
 {
     public int Count { get => _count; }
 
