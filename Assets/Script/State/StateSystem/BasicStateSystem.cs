@@ -30,9 +30,9 @@ public class BasicStateSystem : MonoBehaviour
 
         _states[1] = StateWithCommandBuffer.Init(cq, false);
 
-        _states[0].AddTransitions(Transition.Init(ConditionWithFunc.Init(() => trans), _states[1]));
-        _states[1].AddTransitions(Transition.Init(ConditionWithFunc.Init(() => !trans), _states[0]));
-        _states[1].AddTransitions(Transition.Init(ConditionWithFunc.Init(() => { if (loop) { loop = false; return true; } return false; }), _states[1]));
+        _states[0].AddTransitions(Transition.Init(ConditionWithFunc.Init(() => trans), 1));
+        _states[1].AddTransitions(Transition.Init(ConditionWithFunc.Init(() => !trans), 0));
+        _states[1].AddTransitions(Transition.Init(ConditionWithFunc.Init(() => { if (loop) { loop = false; return true; } return false; }), 1));
 
         _currStateIndex = 0;
         _currState = _states[_currStateIndex].Clone();
@@ -47,7 +47,7 @@ public class BasicStateSystem : MonoBehaviour
         else
             _currState.Execute();
         
-        var state = _currState.CheckTransitions();
-        if (state != null) { _currState = state.Clone(); }
+        var stateIndex = _currState.CheckTransitions();
+        if (stateIndex != -1) { _currState = _states[stateIndex].Clone(); _currStateIndex = stateIndex; }
     }
 }

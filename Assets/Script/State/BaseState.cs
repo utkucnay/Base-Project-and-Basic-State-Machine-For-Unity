@@ -15,6 +15,6 @@ public abstract class BaseState
     public abstract bool IsFinish { get; }
     public abstract bool IsLoop { get; }
     public abstract void Execute();
-    public abstract BaseState CheckTransitions();
+    public abstract int CheckTransitions();
     public abstract BaseState Clone();
 }

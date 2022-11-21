@@ -24,14 +24,14 @@ public class StateWithCommandBuffer : BaseState
         _commandQueue.Execute();
     }
 
-    public override BaseState CheckTransitions()
+    public override int CheckTransitions()
     {
         for (int i = 0; i < _transitions.Count; i++)
         {
             var transition = _transitions[i];
-            if (transition._condition.CheckCondition()) return transition._state;
+            if (transition._condition.CheckCondition()) return transition._stateIndex;
         }
-        return null;
+        return -1;
     }
 
     public override BaseState Clone()

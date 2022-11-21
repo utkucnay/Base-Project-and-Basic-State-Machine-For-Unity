@@ -4,8 +4,9 @@ using UnityEngine;
 
 public struct Transition
 {
-    public static Transition Init(ConditionWithFunc condition, BaseState state) => new Transition { _condition = condition, _state= state };
+    public static Transition Init(ConditionWithFunc condition, int stateIndex) =>
+        new Transition { _condition = condition, _stateIndex = stateIndex };
 
     public BaseCondition _condition;
-    public BaseState _state;
+    public int _stateIndex;
 }
