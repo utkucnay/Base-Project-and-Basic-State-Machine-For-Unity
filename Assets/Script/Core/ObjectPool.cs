@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum ObjectType
 {
-    
+    Default
 }
 
 [System.Serializable]
@@ -18,7 +18,7 @@ public struct ObjectArray
 
 public class ObjectPool : Singleton<ObjectPool>
 {
-    [SerializeField] ObjectArray[] _objects;
+    [SerializeField] public ObjectArray[] _objects;
 
     Dictionary<ObjectType, Stack<GameObject>> _objectPool;
     Dictionary<ObjectType, GameObject> _objectPrefab;

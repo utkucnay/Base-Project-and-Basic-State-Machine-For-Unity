@@ -11,21 +11,22 @@ public class BasicStateSystem : MonoBehaviour
     [SerializeField] bool trans;
     [SerializeField] bool loop;
 
+    [SerializeField] bool _debug;
     private void Start()
     {
         _states = new BaseState[2];
 
         CommandQueue cq = CommandQueue.Init();
-        cq.AddAction(() => Debug.Log("Timer Start"));
+        cq.AddAction(() => DebugSystem.s_Instance.Log(DebugInput.Init(_debug, DebugType.Command, "Timer Start")));
         cq.AddCommand(TimerCommand.Init(5));
-        cq.AddAction(() => Debug.Log("Timer End"));
+        cq.AddAction(() => DebugSystem.s_Instance.Log(DebugInput.Init(_debug, DebugType.Command, "Timer End")));
 
         _states[0] = StateWithCommandBuffer.Init(cq, true);
 
         cq = CommandQueue.Init();
-        cq.AddAction(() => Debug.Log("Frame Timer Start"));
+        cq.AddAction(() => DebugSystem.s_Instance.Log(DebugInput.Init(_debug, DebugType.Command, "Frame Timer Start")));
         cq.AddCommand(FrameTimerCommand.Init(5));
-        cq.AddAction(() => Debug.Log("Frame Timer End"));
+        cq.AddAction(() => DebugSystem.s_Instance.Log(DebugInput.Init(_debug, DebugType.Command, "Frame Timer End")));
 
         _states[1] = StateWithCommandBuffer.Init(cq, false);
 
