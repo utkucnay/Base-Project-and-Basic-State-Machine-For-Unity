@@ -11,7 +11,7 @@ public enum DebugType
     GameMechanic = 8
 }
 
-public class DebugSystem : Singleton<DebugSystem>, IDebug
+public class DebugSystem : Singleton<DebugSystem>
 {
     [SerializeField] DebugType _debugType;
     [SerializeField] bool _hideWarning;
@@ -22,7 +22,7 @@ public class DebugSystem : Singleton<DebugSystem>, IDebug
         base.Awake();
     }
 
-    public void Log(DebugInput msg)
+    public void Log(in DebugInput msg)
     {
         if (_debugType.HasFlag(msg._debugType) && msg._debugEnabled)
         {
@@ -30,13 +30,13 @@ public class DebugSystem : Singleton<DebugSystem>, IDebug
         }
     }
 
-    public void LogError(DebugInput msg)
+    public void LogError(in DebugInput msg)
     {
         if (_hideError) return;
         Debug.LogError(msg._message);
     }
 
-    public void LogWarning(DebugInput msg)
+    public void LogWarning(in DebugInput msg)
     {
         if(_hideWarning) return;
         Debug.LogWarning(msg._message);
