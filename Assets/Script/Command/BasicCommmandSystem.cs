@@ -28,7 +28,8 @@ public class BasicCommmandSystem : MonoBehaviour
 
     private void Update()
     {
-        _commandQueue.Execute();
+        if(!_commandQueue.IsFinish)
+            _commandQueue.Execute();
     }
 
     private void OnDisable()

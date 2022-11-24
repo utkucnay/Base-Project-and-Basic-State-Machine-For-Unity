@@ -18,4 +18,39 @@ public abstract class ReciverMonoBehaviour : MonoBehaviour
     {
         a_OnDisable?.Invoke();
     }
+
+    protected virtual void OnDestroy()
+    {
+        a_OnDisable?.Invoke();
+    }
+
+    protected void RegisterEventFromTransform<T>(string name, UnityAction action) where T : IEvent
+    {
+        EventManager<T>.RegisterEventFromTransform(this.transform, action, name, this);
+    }
+
+    protected void RegisterEventFromRoot<T>(Transform root,string name, UnityAction action) where T : IEvent
+    {
+        EventManager<T>.RegisterEventFromRoot(root, action, name, this);
+    }
+
+    protected void RegisterEventFromAllGameObjects<T>(string name, UnityAction action) where T : IEvent
+    {
+        EventManager<T>.RegisterEventFromAllGameObjects(action, name, this);
+    }
+
+    protected void RegisterEventFromTransform<T, TEventType>(string name, UnityAction<TEventType> action) where T : IEvent<TEventType>
+    {
+        EventManager<T, TEventType>.RegisterEventFromTransform(this.transform, action, name, this);
+    }
+
+    protected void RegisterEventFromRoot<T, TEventType>(Transform root, string name, UnityAction<TEventType> action) where T : IEvent<TEventType>
+    {
+        EventManager<T, TEventType>.RegisterEventFromRoot(root, action, name, this);
+    }
+
+    protected void RegisterEventFromAllGameObjects<T, TEventType>(string name, UnityAction<TEventType> action) where T : IEvent<TEventType>
+    {
+        EventManager<T, TEventType>.RegisterEventFromAllGameObjects(action, name, this);
+    }
 }

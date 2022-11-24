@@ -1,19 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : MonoBehaviour, IMove
 {
     Vector2 _oldPos;
 
-    UnityEvent<Vector2> e_move;
-
-    protected void Awake()
-    {
-        e_move = new UnityEvent<Vector2>();
-        Observer.RegisterEventFromTransform<IMove, Vector2>(transform, "Move", e_move);
-    }
+    public UnityEvent<Vector2> e_move;
 
     private void Update()
     {

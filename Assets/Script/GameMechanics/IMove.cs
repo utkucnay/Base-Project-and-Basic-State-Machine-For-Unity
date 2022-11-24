@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMove : IEventWithParam
+public interface IMove : IEvent<Vector2>
 {
-    public void Move(Vector2 deltaMove);
 }

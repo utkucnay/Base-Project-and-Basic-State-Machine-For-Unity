@@ -13,6 +13,7 @@ public class MultipleCommand : BaseCommand
 
     public static MultipleCommand Init(BaseCommand[] commands) {
         var command = new MultipleCommand { _commands = commands, _lenght = commands.Length };
+        command._currCommands = new BaseCommand[commands.Length];
         Array.Copy(commands, command._currCommands, commands.Length);
         return command;
     }
