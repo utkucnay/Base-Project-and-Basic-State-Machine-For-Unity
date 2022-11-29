@@ -1,4 +1,4 @@
-# Base Project For Unity
+# Base Project and Basic AI System For Unity
  I made Base Project for all Unity Games
 
 # Observer Setup
@@ -13,8 +13,8 @@ It does what it says in name.
 # Command
 We create command like move, timer etc. and hold Command Queue.  
 
-# State
-We create state and transition.
+# Basic AI State
+We create state and transition like Unity animation.
 
 # Unit Test
 It pass all tests
