@@ -20,7 +20,7 @@ public class BasicCommmandSystem : MonoBehaviour
         _commandQueue.AddAction(() => Debug.Log("Frame Timer begin"));
         _commandQueue.AddCommand(FrameTimerCommand.Init(5));
         _commandQueue.AddAction(() => Debug.Log("Frame Timer finish"));
-        _commandQueue.AddCommand(MultipleCommand.Init(new BaseCommand[] { FrameTimerCommand.Init(5), TimerCommand.Init(5),
+        _commandQueue.AddCommand(ParallelCommand.Init(new BaseCommand[] { FrameTimerCommand.Init(5), TimerCommand.Init(5),
         ActionCommand.Init(() => Debug.Log("Timer begin")), ActionCommand.Init(() => Debug.Log("Frame Timer begin"))}));
         _commandQueue.AddAction(() => Debug.Log("Frame Timer and Timer finish"));
 

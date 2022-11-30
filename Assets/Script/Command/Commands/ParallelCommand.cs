@@ -5,14 +5,14 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static PlasticPipe.PlasticProtocol.Messages.NegotiationCommand;
 
-public class MultipleCommand : BaseCommand
+public class ParallelCommand : BaseCommand
 {
     BaseCommand[] _commands;
     BaseCommand[] _currCommands;
     int _lenght;
 
-    public static MultipleCommand Init(BaseCommand[] commands) {
-        var command = new MultipleCommand { _commands = commands, _lenght = commands.Length };
+    public static ParallelCommand Init(BaseCommand[] commands) {
+        var command = new ParallelCommand { _commands = commands, _lenght = commands.Length };
         command._currCommands = new BaseCommand[commands.Length];
         Array.Copy(commands, command._currCommands, commands.Length);
         return command;
