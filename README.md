@@ -2,19 +2,19 @@
  I made Base Project for all Unity Games
 
 # Observer Setup
-We have a ReciverMonoBehaviour for listener. If we disable monobehaviour remove and we enable add event. If object will listener should inherence ReciverMonoBehaviour. We have helper static class as know Observer. Observer register all event system for transform, root or all game objects. 
+The observer setup uses a ReciverMonoBehaviour for listeners. If we disable the MonoBehaviour, the remove event is enabled. Objects that will listen must inherit the ReciverMonoBehaviour. We also have a helper static class called Observer, which registers all event systems for transforms, roots, or all game objects.
 
 # ObjectPool
-We have basic Object Pool system. we will fill ObjectType enum and get object.
+The object pool system has a basic object pool that can be filled with objects of the ObjectType enum.
 
 # Singleton
-It does what it says in name.
+The singleton class does what its name suggests.
 
 # Command
-We create command like move, timer etc. and hold Command Queue.  
+The command system allows the creation of commands, such as move or timer, and holds a command queue.
 
 # Basic State Machine (HFSM)
-We create state and transition like Unity animation.
+The basic state machine (HFSM) allows the creation of states and transitions, similar to the Unity animation system.
 
 # Unit Test
-It pass all tests
+Unit tests have been implemented and all tests pass.
