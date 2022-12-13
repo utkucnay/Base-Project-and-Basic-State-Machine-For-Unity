@@ -13,7 +13,7 @@ It does what it says in name.
 # Command
 We create command like move, timer etc. and hold Command Queue.  
 
-# Basic State Machine
+# Basic State Machine (HFSM)
 We create state and transition like Unity animation.
 
 # Unit Test
